@@ -8,210 +8,264 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* HUD界面样式 - 包含游戏进行中的UI元素 */
+/* 游戏内 HUD */
 
 #uiLayer {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    pointer-events: none;
+    inset: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 30px;
-    box-sizing: border-box;
+    padding: clamp(16px, 2.2vw, 30px);
+    pointer-events: none;
 }
 
 .hud-top {
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-    text-shadow: 0 0 10px #00d2ff;
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) auto minmax(260px, 1fr);
+    align-items: start;
+    gap: clamp(12px, 2vw, 28px);
 }
 
-.score-box {
-    font-size: 32px; 
+.score-container,
+.stats-box,
+.health-cluster,
+.stats-panel,
+.fps-display {
+    border: 1px solid rgba(113, 157, 185, 0.16);
+    background: linear-gradient(135deg, rgba(7, 15, 28, 0.84), rgba(4, 8, 17, 0.54));
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.03), 0 12px 35px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(7px);
+}
+
+.score-container {
+    justify-self: start;
+    min-width: 196px;
+    padding: 12px 16px 11px;
+    border-left: 2px solid var(--color-blue);
+    clip-path: var(--panel-cut);
+}
+
+.score-box,
+.highscore-box {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.hud-label,
+.highscore-box span,
+.stat-label,
+.health-meta,
+.stats-label {
+    color: var(--color-muted);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.score-box strong {
+    color: #e8faff;
+    font-size: clamp(24px, 2.3vw, 34px);
     font-weight: 900;
-    color: #00d2ff; 
-    letter-spacing: 2px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 18px rgba(57, 168, 255, 0.48);
+}
+
+.highscore-box {
+    margin-top: 8px;
+    padding-top: 7px;
+    border-top: 1px solid rgba(113, 157, 185, 0.14);
+}
+
+.highscore-box strong {
+    color: var(--color-gold);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.35);
 }
 
 .stats-box {
     display: flex;
-    gap: 20px;
-    align-items: center;
+    align-items: stretch;
+    justify-self: center;
+    min-height: 58px;
+    clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, calc(100% - 8px) 100%, 8px 100%, 0 10px);
 }
 
 .stat-item {
+    position: relative;
     display: flex;
+    min-width: 112px;
     flex-direction: column;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 18px;
 }
 
-.stat-label {
-    font-size: 10px; 
-    color: #888;
+.stat-item + .stat-item::before {
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    width: 1px;
+    content: '';
+    background: linear-gradient(transparent, rgba(33, 246, 210, 0.35), transparent);
 }
 
 .stat-value {
-    font-size: 20px; 
-    font-weight: bold;
-    color: #fff;
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.health-cluster {
+    justify-self: end;
+    width: min(340px, 100%);
+    padding: 11px 14px 13px;
+    border-right: 2px solid var(--color-cyan);
+    clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.health-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.health-text {
+    color: #dffdf8;
+    font-size: 10px;
+    letter-spacing: 0.12em;
 }
 
 .health-container {
     position: relative;
-    width: 300px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid #00ffcc;  /* 霓虹青边框 */
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); 
-    transform: skewX(-20deg);
-    overflow: visible;
+    height: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(33, 246, 210, 0.5);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 100%, 7px 100%);
+    background:
+        repeating-linear-gradient(90deg, transparent 0 30px, rgba(255, 255, 255, 0.08) 30px 31px),
+        rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.7);
 }
 
 .health-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #ff0055, #ff5500);
     width: 100%;
-    box-shadow: 0 0 15px #ff0055;
-    transition: width 0.05s linear; 
+    height: 100%;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 20%),
+        linear-gradient(90deg, #ff315f, #ff793f);
+    box-shadow: 0 0 16px rgba(255, 49, 95, 0.7);
+    transition: width 50ms linear;
 }
 
 .weapon-info {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) skewX(-20deg);
-    color: #00ffcc;
-    font-size: 14px;
-    text-shadow: 
-        -1px -1px 1px rgba(0, 0, 0, 0.4),
-        1px -1px 1px rgba(0, 0, 0, 0.4),
-        -1px 1px 1px rgba(0, 0, 0, 0.4),
-        1px 1px 1px rgba(0, 0, 0, 0.4);
-    white-space: nowrap;
-    z-index: 10;
-}
-
-.health-text {
-    position: absolute;
-    bottom: -22px;
-    left: 50%;
-    transform: translateX(-50%);
+    inset: 0;
+    display: grid;
+    place-items: center;
     color: #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-    text-shadow: 
-        -1px -1px 2px rgba(0, 0, 0, 0.8),
-        1px -1px 2px rgba(0, 0, 0, 0.8),
-        -1px 1px 2px rgba(0, 0, 0, 0.8),
-        1px 1px 2px rgba(0, 0, 0, 0.8);
-    white-space: nowrap;
-    z-index: 10;
-    letter-spacing: 1px;
-}
-
-.score-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.highscore-box {
-    font-size: 14px;
+    font-size: 8px;
     font-weight: 700;
-    color: #FFD700;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 0.18em;
+    text-shadow: 0 1px 3px #000000;
 }
 
 .hud-bottom {
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
-    padding-top: 20px;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 .stats-panel {
     display: flex;
-    gap: 30px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid #00ffcc;  /* 霓虹青边框 */
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    gap: 0;
+    padding: 0 8px;
+    border-left: 2px solid var(--color-cyan);
+    clip-path: var(--panel-cut);
 }
 
 .stats-row {
+    position: relative;
     display: flex;
+    min-width: 104px;
     flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 11px 14px;
 }
 
-.stats-label {
-    font-size: 10px;
-    color: #888;
-    letter-spacing: 1px;
+.stats-row + .stats-row::before {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    width: 1px;
+    content: '';
+    background: rgba(113, 157, 185, 0.16);
 }
 
 .stats-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #00d2ff;
+    color: var(--color-cyan);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 10px rgba(33, 246, 210, 0.3);
 }
 
 .fps-display {
-    font-size: 12px;
-    color: #666;
+    padding: 8px 11px;
+    color: #668092;
+    border-color: rgba(113, 157, 185, 0.12);
     font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
 }
 
 .achievement-popup {
     position: fixed;
-    top: auto;
-    bottom: 20px;
-    right: -300px;
-    width: 280px;
-    background: rgba(0, 0, 0, 0.3); /* ✨ 统一背景 */
-    border: 1px solid #00ffcc;      /* ✨ 统一边框宽度 */
-    border-radius: 5px;             /* ✨ 统一圆角 */
-    padding: 12px 18px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    right: -360px;
+    bottom: 24px;
     z-index: 600;
-    transition: right 0.5s ease-out;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    display: flex;
+    width: min(340px, calc(100vw - 32px));
+    align-items: center;
+    gap: 16px;
+    padding: 15px 18px;
+    border: 1px solid var(--border-cyan);
+    border-left: 3px solid var(--color-cyan);
+    clip-path: var(--panel-cut);
+    background: var(--color-panel-strong);
+    box-shadow: var(--shadow-cyan);
+    transition: right 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .achievement-popup.show {
-    right: 20px;
+    right: 24px;
 }
 
 .achievement-icon {
-    font-size: 40px;
-    color: #FFD700;
-    text-shadow: 0 0 20px #FFD700;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    place-items: center;
+    color: #071018;
+    clip-path: polygon(50% 0, 62% 34%, 100% 50%, 62% 66%, 50% 100%, 38% 66%, 0 50%, 38% 34%);
+    background: var(--color-gold);
+    font-size: 18px;
+    text-shadow: none;
+    animation: achievementPulse 1.6s ease-in-out infinite;
 }
 
 .achievement-text {
@@ -219,52 +273,165 @@
 }
 
 .achievement-title {
-    font-size: 14px;
-    font-weight: bold;
-    color: #00ffcc;
     margin-bottom: 5px;
+    color: var(--color-cyan);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .achievement-desc {
-    font-size: 12px;
-    color: #fff;
+    color: #9fb0c0;
+    font-size: 10px;
+    line-height: 1.5;
 }
 
 .wave-announcement {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
     z-index: 700;
     pointer-events: none;
-    transition: transform 0.3s ease-out;
+    transform: translate(-50%, -50%) scale(0.82);
+    opacity: 0;
+    transition: transform 250ms ease-out, opacity 250ms ease-out;
 }
 
 .wave-announcement.show {
     transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
 }
 
 .wave-text {
-    font-size: 80px;
+    position: relative;
+    color: #ecfffc;
+    font-size: clamp(48px, 7vw, 92px);
     font-weight: 900;
-    color: #00ffcc;
-    text-shadow: 
-        0 0 30px #00ffcc,
-        0 0 60px #00ffcc;
-    letter-spacing: 10px;
-    animation: waveGlow 1s infinite alternate;
+    letter-spacing: 0.16em;
+    text-shadow: 0 0 24px rgba(33, 246, 210, 0.85);
+    white-space: nowrap;
 }
 
-@keyframes waveGlow {
-    from {
-        text-shadow: 
-            0 0 30px #00ffcc,
-            0 0 60px #00ffcc;
+.wave-text::before,
+.wave-text::after {
+    position: absolute;
+    top: 50%;
+    width: min(18vw, 180px);
+    height: 1px;
+    content: '';
+    background: linear-gradient(90deg, transparent, var(--color-cyan));
+}
+
+.wave-text::before {
+    right: calc(100% + 26px);
+}
+
+.wave-text::after {
+    left: calc(100% + 16px);
+    transform: rotate(180deg);
+}
+
+@keyframes achievementPulse {
+    50% { transform: scale(1.08) rotate(5deg); }
+}
+
+@media (max-width: 900px) {
+    .hud-top {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            'score health'
+            'stats stats';
     }
-    to {
-        text-shadow: 
-            0 0 50px #00ffcc,
-            0 0 100px #00ffcc,
-            0 0 150px #00ffcc;
+
+    .score-container { grid-area: score; }
+    .stats-box { grid-area: stats; justify-self: center; }
+    .health-cluster { grid-area: health; }
+}
+
+@media (max-width: 620px) {
+    #uiLayer {
+        padding: 12px;
+    }
+
+    .hud-top {
+        gap: 8px;
+    }
+
+    .score-container {
+        min-width: 0;
+        width: 100%;
+        padding: 10px 11px;
+    }
+
+    .score-box,
+    .highscore-box {
+        gap: 8px;
+    }
+
+    .score-box strong {
+        font-size: 22px;
+    }
+
+    .hud-label,
+    .highscore-box span,
+    .stat-label,
+    .health-meta,
+    .stats-label {
+        font-size: 7px;
+        letter-spacing: 0.1em;
+    }
+
+    .health-cluster {
+        width: 100%;
+        padding: 9px 10px 11px;
+    }
+
+    .stat-item {
+        min-width: 94px;
+        padding: 8px 12px;
+    }
+
+    .stats-row {
+        min-width: 0;
+        padding: 9px 10px;
+    }
+
+    .stats-panel {
+        flex: 1;
+        justify-content: space-around;
+    }
+
+    .fps-display {
+        display: none;
+    }
+
+    .achievement-popup.show {
+        right: 16px;
+    }
+}
+
+@media (max-height: 620px) {
+    #uiLayer {
+        padding-block: 10px;
+    }
+
+    .stats-box {
+        display: none;
+    }
+
+    .hud-top {
+        grid-template-areas: 'score health';
+    }
+
+    .stats-panel {
+        transform: scale(0.88);
+        transform-origin: left bottom;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .achievement-icon {
+        animation: none;
     }
 }

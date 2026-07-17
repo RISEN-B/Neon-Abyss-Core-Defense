@@ -23,6 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>霓虹绝境：核心防御</title>
+    <link rel="icon" href="assets/svg/player.svg" type="image/svg+xml">
     
     <!-- 字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
@@ -48,8 +49,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div id="uiLayer">
         <div class="hud-top">
             <div class="score-container">
-                <div class="score-box">SCORE: <span id="scoreVal">0</span></div>
-                <div class="highscore-box">BEST: <span id="highscoreVal">0</span></div>
+                <div class="score-box">
+                    <span class="hud-label">SCORE</span>
+                    <strong id="scoreVal">0</strong>
+                </div>
+                <div class="highscore-box">
+                    <span>PERSONAL BEST</span>
+                    <strong id="highscoreVal">0</strong>
+                </div>
             </div>
             <div class="stats-box">
                 <div class="stat-item">
@@ -61,10 +68,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                     <span class="stat-value" id="damageVal">10</span>
                 </div>
             </div>
-            <div class="health-container">
-                <div id="healthBar" class="health-bar"></div>
-                <div class="weapon-info" id="weaponName">PISTOL</div>
-                <div class="health-text" id="healthText">100 / 100</div>
+            <div class="health-cluster">
+                <div class="health-meta">
+                    <span>CORE INTEGRITY</span>
+                    <strong class="health-text" id="healthText">100 / 100</strong>
+                </div>
+                <div class="health-container">
+                    <div id="healthBar" class="health-bar"></div>
+                    <div class="weapon-info" id="weaponName">PISTOL</div>
+                </div>
             </div>
         </div>
         <div class="hud-bottom">
@@ -87,13 +99,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
 
     <div id="gameOverMsg">
+        <div class="gameover-eyebrow">MISSION TERMINATED</div>
         <div class="gameover-title">SYSTEM FAILURE</div>
         <div class="gameover-stats">
-            <div class="gameover-stat">FINAL SCORE: <span id="finalScore">0</span></div>
-            <div class="gameover-stat">KILLS: <span id="finalKills">0</span></div>
-            <div class="gameover-stat">TIME: <span id="finalTime">00:00</span></div>
+            <div class="gameover-stat">
+                <span>FINAL SCORE</span>
+                <strong id="finalScore">0</strong>
+            </div>
+            <div class="gameover-stat">
+                <span>HOSTILES CLEARED</span>
+                <strong id="finalKills">0</strong>
+            </div>
+            <div class="gameover-stat">
+                <span>UPTIME</span>
+                <strong id="finalTime">00:00</strong>
+            </div>
             <div class="gameover-stat new-record" id="newRecord" style="display: none;">★ NEW RECORD ★</div>
         </div>
+        <div class="gameover-hint">REBOOT SEQUENCE INITIALIZING</div>
     </div>
 
     <div id="achievementPopup" class="achievement-popup">
@@ -110,44 +133,67 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
     <div id="pauseOverlay">
         <div class="pause-menu">
+            <div class="menu-kicker">TACTICAL INTERFACE</div>
             <div class="pause-title">PAUSED</div>
-            <button class="pause-btn" id="resumeBtn">RESUME</button>
-            <button class="pause-btn" id="settingsBtn">SETTINGS</button>
-            <button class="pause-btn" id="resetBtn">RESTART</button>
+            <p class="pause-subtitle">Combat simulation suspended</p>
+            <div class="pause-actions">
+                <button class="pause-btn pause-btn-primary" id="resumeBtn">RESUME</button>
+                <button class="pause-btn" id="settingsBtn">SETTINGS</button>
+                <button class="pause-btn pause-btn-danger" id="resetBtn">RESTART</button>
+            </div>
+            <div class="menu-hint">PRESS ESC TO RETURN</div>
         </div>
     </div>
 
     <div id="settingsOverlay" class="settings-overlay">
         <div class="settings-menu">
+            <div class="menu-kicker">SYSTEM CONFIGURATION</div>
             <div class="settings-title">SETTINGS</div>
+            <p class="settings-subtitle">Tune combat feedback and telemetry</p>
             <div class="settings-group">
-                <label class="settings-label">MASTER VOLUME</label>
+                <label class="settings-label" for="volumeSlider">MASTER VOLUME</label>
                 <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
                 <span class="volume-value" id="volumeValue">70%</span>
             </div>
             <div class="settings-group">
-                <label class="settings-label">BGM VOLUME</label>
+                <label class="settings-label" for="bgmSlider">BGM VOLUME</label>
                 <input type="range" id="bgmSlider" class="volume-slider" min="0" max="100" value="50">
                 <span class="volume-value" id="bgmValue">50%</span>
             </div>
             <div class="settings-group">
-                <label class="settings-label">SFX VOLUME</label>
+                <label class="settings-label" for="sfxSlider">SFX VOLUME</label>
                 <input type="range" id="sfxSlider" class="volume-slider" min="0" max="100" value="80">
                 <span class="volume-value" id="sfxValue">80%</span>
             </div>
-            <div class="settings-group">
-                <label class="settings-label">SHOW FPS</label>
+            <div class="settings-group settings-toggle-row">
+                <label class="settings-label" for="showFpsCheck">SHOW FPS</label>
                 <input type="checkbox" id="showFpsCheck" class="settings-checkbox" checked>
             </div>
-            <button class="pause-btn" id="closeSettingsBtn">BACK</button>
+            <button class="pause-btn settings-back" id="closeSettingsBtn">BACK</button>
         </div>
     </div>
 
     <div id="startScreen">
-        <h1 class="title">NEON DEFENSE</h1>
-        <p class="subtitle">WASD to Move | HOLD Mouse to Shoot | ESC to Pause</p>
-        <button id="startBtn" class="start-btn">Initialize System</button>
-        <button id="demoBtn" class="start-btn" style="margin-top: 15px; font-size: 0.9em;">DEMO MODE</button>
+        <div class="start-shell">
+            <div class="system-kicker"><span class="status-dot"></span> DEFENSE PROTOCOL // ONLINE</div>
+            <div class="title-group">
+                <span class="title-index">NX // 01</span>
+                <h1 class="title"><span>NEON</span><span class="title-accent">DEFENSE</span></h1>
+                <p class="subtitle">Protect the core. Break the swarm. Outlast the abyss.</p>
+            </div>
+            <div class="control-strip" aria-label="Game controls">
+                <div class="control-item"><kbd>WASD</kbd><span>MOVE</span></div>
+                <div class="control-item"><kbd>HOLD MOUSE</kbd><span>FIRE</span></div>
+                <div class="control-item"><kbd>ESC</kbd><span>PAUSE</span></div>
+            </div>
+            <div class="start-actions">
+                <button id="startBtn" class="start-btn start-btn-primary">Initialize System</button>
+                <button id="demoBtn" class="start-btn start-btn-secondary">Demo Mode</button>
+            </div>
+            <p class="start-hint">70 weapon levels · adaptive waves · zero mercy</p>
+        </div>
+        <div class="screen-code screen-code-left" aria-hidden="true">CORE // STABLE</div>
+        <div class="screen-code screen-code-right" aria-hidden="true">BUILD // 2026.07</div>
     </div>
 </div>
 
