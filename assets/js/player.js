@@ -510,9 +510,18 @@ class Player {
             ctx.shadowBlur = 15 + (this.laserLevel * 0.5);
             ctx.shadowColor = getLaserColor(this.laserLevel);
             
-            // 绘制SVG图像
+            // 绘制SVG图像-使用离屏画布缓存避免Safari滤镜白边
             if (playerSvg.complete) {
-                ctx.drawImage(playerSvg, offsetX, offsetY, svgSize, svgSize);
+                if (!this._svgCache) {
+                    const cacheSize = Math.ceil(svgSize);
+                    this._svgCache = document.createElement('canvas');
+                    this._svgCache.width = cacheSize;
+                    this._svgCache.height = cacheSize;
+                    this._svgCacheSize = svgSize;
+                    const cacheCtx = this._svgCache.getContext('2d');
+                    cacheCtx.drawImage(playerSvg, 0, 0, svgSize, svgSize);
+                }
+                ctx.drawImage(this._svgCache, offsetX, offsetY, this._svgCacheSize, this._svgCacheSize);
             } else {
                 // 如果SVG未加载完成，使用备用圆形
                 ctx.beginPath();

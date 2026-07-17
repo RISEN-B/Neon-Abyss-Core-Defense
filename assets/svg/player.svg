@@ -36,10 +36,10 @@
   <path d="M84 139 L94 139 L91 184 L79 151 Z M106 139 L116 139 L121 151 L109 184 Z"
         fill="#00eaff" opacity="0.28" filter="url(#softGlow)"/>
 
-  <g stroke-linejoin="round" stroke-linecap="round">
+  <g stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)">
     <!-- Dark silhouette gives the ship weight against bright effects. -->
     <path d="M100 17 L117 67 L136 91 L169 119 L145 143 L119 128 L112 151 L88 151 L81 128 L55 143 L31 119 L64 91 L83 67 Z"
-          fill="#030b18" stroke="#00ffd5" stroke-width="3" opacity="0.9" filter="url(#glow)"/>
+          fill="#030b18" stroke="#00ffd5" stroke-width="3" opacity="0.9"/>
 
     <!-- Swept wings -->
     <path d="M84 70 L65 94 L33 119 L55 137 L86 117 L96 91 Z"
@@ -51,7 +51,7 @@
 
     <!-- Central armored fuselage -->
     <path d="M100 18 L116 76 L112 125 L100 146 L88 125 L84 76 Z"
-          fill="url(#hull)" stroke="#48ffe6" stroke-width="2.5" filter="url(#glow)"/>
+          fill="url(#hull)" stroke="#48ffe6" stroke-width="2.5"/>
     <path d="M100 25 L100 137 M88 78 L100 91 L112 78"
           fill="none" stroke="#a9fff3" stroke-width="1.3" opacity="0.55"/>
     <path d="M89 113 L100 121 L111 113" fill="none" stroke="#00ffd5" stroke-width="1.4" opacity="0.75"/>
@@ -66,8 +66,8 @@
           fill="none" stroke="#4affdf" stroke-width="1.4" opacity="0.72"/>
     <path d="M51 111 L40 120 L54 132 L65 122 Z M149 111 L160 120 L146 132 L135 122 Z"
           fill="#05283b" stroke="#68fff0" stroke-width="1.7"/>
-    <circle cx="46" cy="120" r="3.5" fill="#e9ffff" stroke="#00ffd5" stroke-width="1.5" filter="url(#glow)"/>
-    <circle cx="154" cy="120" r="3.5" fill="#e9ffff" stroke="#00ffd5" stroke-width="1.5" filter="url(#glow)"/>
+    <circle cx="46" cy="120" r="3.5" fill="#e9ffff" stroke="#00ffd5" stroke-width="1.5"/>
+    <circle cx="154" cy="120" r="3.5" fill="#e9ffff" stroke="#00ffd5" stroke-width="1.5"/>
 
     <!-- Twin engine housings -->
     <path d="M82 125 L95 132 L93 151 L82 151 Z M118 125 L105 132 L107 151 L118 151 Z"
@@ -76,10 +76,10 @@
     <rect x="107" y="145" width="9" height="7" rx="2" fill="#cfffff" stroke="#00eaff" stroke-width="1"/>
 
     <!-- Engine plasma -->
-    <path d="M85 151 C84 164 88 175 89 181 C92 170 94 160 92 151 Z" fill="url(#flame)" filter="url(#glow)"/>
-    <path d="M108 151 C106 160 108 170 111 181 C112 173 116 164 115 151 Z" fill="url(#flame)" filter="url(#glow)"/>
+    <path d="M85 151 C84 164 88 175 89 181 C92 170 94 160 92 151 Z" fill="url(#flame)"/>
+    <path d="M108 151 C106 160 108 170 111 181 C112 173 116 164 115 151 Z" fill="url(#flame)"/>
 
     <!-- Nose beacon -->
-    <circle cx="100" cy="24" r="2.6" fill="#ffffff" stroke="#54fff0" stroke-width="1.2" filter="url(#glow)"/>
+    <circle cx="100" cy="24" r="2.6" fill="#ffffff" stroke="#54fff0" stroke-width="1.2"/>
   </g>
 </svg>

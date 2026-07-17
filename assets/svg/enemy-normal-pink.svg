@@ -27,10 +27,10 @@
     </g>
   </defs>
 
-  <g transform="translate(75 75)" stroke-linejoin="round" stroke-linecap="round">
+  <g transform="translate(75 75)" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)">
     <circle r="53" fill="#100510" fill-opacity="0.78" stroke="#ff3eae" stroke-width="2.2"
-            stroke-dasharray="8 5" filter="url(#glow)"/>
-    <g filter="url(#glow)">
+            stroke-dasharray="8 5"/>
+    <g>
       <use href="#blade"/>
       <use href="#blade" transform="rotate(90)"/>
       <use href="#blade" transform="rotate(180)"/>
@@ -49,10 +49,10 @@
     <path d="M0 -35 L0 -24 M35 0 L24 0 M0 35 L0 24 M-35 0 L-24 0"
           stroke="#ffd0ec" stroke-width="1.2" opacity="0.65"/>
 
-    <circle r="24" fill="#0d030b" stroke="#ff5abd" stroke-width="2.4" filter="url(#glow)"/>
+    <circle r="24" fill="#0d030b" stroke="#ff5abd" stroke-width="2.4"/>
     <circle r="18" fill="none" stroke="#a72b76" stroke-width="1" stroke-dasharray="7 3"/>
     <path d="M0 -11 L9 -5 L9 5 L0 11 L-9 5 L-9 -5 Z" fill="#350b27" stroke="#ff9edc" stroke-width="1.2"/>
-    <circle r="6.5" fill="url(#core)" filter="url(#glow)"/>
+    <circle r="6.5" fill="url(#core)"/>
     <circle cx="-2" cy="-2" r="1.8" fill="#ffffff"/>
   </g>
 </svg>

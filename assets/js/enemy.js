@@ -110,9 +110,17 @@ class Enemy {
         const offsetX = -svgSize / 2;
         const offsetY = -svgSize / 2;
         
-        // 绘制SVG图像（直接使用预渲染的彩色版本，无需滤镜）
+        // 使用离屏画布缓存SVG渲染结果，避免Safari滤镜合成白边问题
         if (this.svgImage && this.svgImage.complete) {
-            ctx.drawImage(this.svgImage, offsetX, offsetY, svgSize, svgSize);
+            if (!this._svgCache) {
+                this._svgCache = document.createElement('canvas');
+                this._svgCache.width = Math.ceil(svgSize);
+                this._svgCache.height = Math.ceil(svgSize);
+                this._svgCacheSize = svgSize;
+                const cacheCtx = this._svgCache.getContext('2d');
+                cacheCtx.drawImage(this.svgImage, 0, 0, svgSize, svgSize);
+            }
+            ctx.drawImage(this._svgCache, offsetX, offsetY, this._svgCacheSize, this._svgCacheSize);
         } else {
             // 降级方案：如果SVG未加载，使用原来的多边形绘制
             ctx.beginPath();

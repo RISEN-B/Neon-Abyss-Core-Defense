@@ -26,7 +26,7 @@
             fill="url(#plate)" stroke="#ff5159" stroke-width="2.4"/>
       <path d="M-12 -69 L-7 -77 L7 -77 L12 -69 L8 -58 L-8 -58 Z"
             fill="#230209" stroke="#ff7d76" stroke-width="1.5"/>
-      <rect x="-4" y="-75" width="8" height="12" rx="2" fill="#ffcbc0" stroke="#ff3838" stroke-width="1.2" filter="url(#glow)"/>
+      <rect x="-4" y="-75" width="8" height="12" rx="2" fill="#ffcbc0" stroke="#ff3838" stroke-width="1.2"/>
       <path d="M-14 -48 L14 -48" stroke="#ff9a90" stroke-width="1.2" opacity="0.7"/>
     </g>
     <g id="clamp" stroke-linejoin="round">
@@ -38,17 +38,17 @@
     </g>
   </defs>
 
-  <g transform="translate(100 100)" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(100 100)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
     <!-- Heavy fortress silhouette -->
     <path d="M0 -90 L60 -72 L88 -28 L88 28 L60 72 L0 90 L-60 72 L-88 28 L-88 -28 L-60 -72 Z"
-          fill="#090106" stroke="#c80e25" stroke-width="4" filter="url(#glow)"/>
+          fill="#090106" stroke="#c80e25" stroke-width="4"/>
     <path d="M0 -80 L53 -64 L78 -24 L78 24 L53 64 L0 80 L-53 64 L-78 24 L-78 -24 L-53 -64 Z"
           fill="url(#shell)" stroke="#ff3444" stroke-width="2.2"/>
     <path d="M0 -69 L45 -55 L67 -20 L67 20 L45 55 L0 69 L-45 55 L-67 20 L-67 -20 L-45 -55 Z"
           fill="#150208" stroke="#7c0e1c" stroke-width="1.6"/>
 
     <!-- Cardinal shield towers -->
-    <g filter="url(#glow)">
+    <g>
       <use href="#bastion"/>
       <use href="#bastion" transform="rotate(90)"/>
       <use href="#bastion" transform="rotate(180)"/>
@@ -71,16 +71,16 @@
 
     <!-- Layered reactor housing -->
     <circle r="55" fill="none" stroke="#df1129" stroke-width="2.8"
-            stroke-dasharray="18 6" filter="url(#glow)"/>
+            stroke-dasharray="18 6"/>
     <circle r="45" fill="#120106" stroke="#ff3c43" stroke-width="2.3"/>
     <circle r="38" fill="none" stroke="#77101d" stroke-width="1.5" stroke-dasharray="4 4"/>
-    <circle r="31" fill="#060104" stroke="#e92535" stroke-width="2.5" filter="url(#glow)"/>
+    <circle r="31" fill="#060104" stroke="#e92535" stroke-width="2.5"/>
     <circle r="23" fill="none" stroke="#991523" stroke-width="1.4" stroke-dasharray="9 3"/>
 
     <!-- Reactor iris; center remains dark enough for HP text. -->
     <path d="M0 -17 L12 -12 L17 0 L12 12 L0 17 L-12 12 L-17 0 L-12 -12 Z"
           fill="#2d050b" stroke="#ff625b" stroke-width="1.8"/>
-    <circle r="9" fill="url(#reactor)" filter="url(#glow)"/>
+    <circle r="9" fill="url(#reactor)"/>
     <circle cx="-3" cy="-3" r="2.2" fill="#ffffff"/>
 
     <!-- Armor status lights -->
