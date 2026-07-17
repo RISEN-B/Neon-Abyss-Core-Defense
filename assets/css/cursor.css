@@ -29,14 +29,19 @@
     pointer-events: none;
     z-index: 1000;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
-    transition: transform 0.05s linear;
+    opacity: 0;
+    filter: drop-shadow(0 0 5px rgba(33, 246, 210, 0.75));
+    transition: transform 0.05s linear, opacity 120ms ease;
+}
+
+#cursor.visible {
+    opacity: 1;
 }
 
 .crosshair-h, .crosshair-v {
     position: absolute;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 5px #fff;
+    background: rgba(226, 255, 250, 0.95);
+    box-shadow: 0 0 5px var(--color-cyan);
     border-radius: 1px;
 }
 
@@ -58,14 +63,20 @@
     position: absolute;
     width: 100%; 
     height: 100%;
-    border: 1px solid rgba(0, 255, 204, 0.6);
+    border: 1px solid rgba(33, 246, 210, 0.72);
     border-radius: 50%;
     box-sizing: border-box;
-    animation: pulse 2s infinite;
+    animation: cursorPulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
+@keyframes cursorPulse {
     0% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 0.8; border-color: #ff0055; }
+    50% { transform: scale(1.1); opacity: 0.9; border-color: var(--color-red); }
     100% { transform: scale(1); opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aim-ring {
+        animation: none;
+    }
 }

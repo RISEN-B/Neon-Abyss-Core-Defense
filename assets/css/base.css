@@ -11,40 +11,99 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* 基础样式 - 包含全局重置和body样式 */
+/* 基础样式 - 包含全局重置、设计变量和页面框架 */
 
-* {
+:root {
+    color-scheme: dark;
+    --color-bg: #03050c;
+    --color-panel: rgba(7, 13, 25, 0.82);
+    --color-panel-strong: rgba(8, 17, 31, 0.96);
+    --color-cyan: #21f6d2;
+    --color-blue: #39a8ff;
+    --color-red: #ff315f;
+    --color-gold: #ffd166;
+    --color-text: #f4fbff;
+    --color-muted: #718397;
+    --border-cyan: rgba(33, 246, 210, 0.34);
+    --shadow-cyan: 0 0 28px rgba(33, 246, 210, 0.16);
+    --panel-cut: polygon(0 10px, 10px 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+}
+
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     overflow: hidden;
-    background-color: #020205;
+    background: var(--color-bg);
+    color: var(--color-text);
     font-family: 'Orbitron', sans-serif;
     cursor: none;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 4px;
+}
+
+::selection {
+    color: #001410;
+    background: var(--color-cyan);
 }
 
 #gameContainer {
     position: relative;
     width: 100vw;
     height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(22, 46, 76, 0.3), transparent 42%),
+        var(--color-bg);
 }
 
-canvas { 
-    display: block; 
-    image-rendering: pixelated; 
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
 }
 
-.hidden { 
-    display: none !important; 
+.hidden {
+    display: none !important;
+}
+
+@media (pointer: coarse) {
+    body,
+    button,
+    input {
+        cursor: auto;
+    }
+
+    #cursor {
+        display: none !important;
+    }
 }

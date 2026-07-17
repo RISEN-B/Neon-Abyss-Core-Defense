@@ -195,6 +195,7 @@ window.addEventListener('mousemove', (e) => {
     // 演示模式下禁用鼠标移动控制
     if (isDemoMode) return;
     
+    cursor.classList.add('visible');
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     cursor.style.left = e.clientX + 'px';
