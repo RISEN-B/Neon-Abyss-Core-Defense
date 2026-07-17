@@ -122,3 +122,146 @@
     z-index: 10;
     letter-spacing: 1px;
 }
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.highscore-box {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFD700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.hud-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 20px;
+}
+
+.stats-panel {
+    display: flex;
+    gap: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.stats-label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.stats-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00d2ff;
+}
+
+.fps-display {
+    font-size: 12px;
+    color: #666;
+    font-family: monospace;
+}
+
+.achievement-popup {
+    position: fixed;
+    top: 100px;
+    right: -300px;
+    width: 280px;
+    background: linear-gradient(135deg, rgba(0, 255, 204, 0.2), rgba(255, 0, 85, 0.2));
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000;
+    transition: right 0.5s ease-out;
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+}
+
+.achievement-popup.show {
+    right: 20px;
+}
+
+.achievement-icon {
+    font-size: 40px;
+    color: #FFD700;
+    text-shadow: 0 0 20px #FFD700;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.achievement-text {
+    flex: 1;
+}
+
+.achievement-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #00ffcc;
+    margin-bottom: 5px;
+}
+
+.achievement-desc {
+    font-size: 12px;
+    color: #fff;
+}
+
+.wave-announcement {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+}
+
+.wave-announcement.show {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.wave-text {
+    font-size: 80px;
+    font-weight: 900;
+    color: #00ffcc;
+    text-shadow: 
+        0 0 30px #00ffcc,
+        0 0 60px #00ffcc;
+    letter-spacing: 10px;
+    animation: waveGlow 1s infinite alternate;
+}
+
+@keyframes waveGlow {
+    from {
+        text-shadow: 
+            0 0 30px #00ffcc,
+            0 0 60px #00ffcc;
+    }
+    to {
+        text-shadow: 
+            0 0 50px #00ffcc,
+            0 0 100px #00ffcc,
+            0 0 150px #00ffcc;
+    }
+}

@@ -197,6 +197,29 @@ function gameOver() {
     audioManager.playGameOver();
     audioManager.stopBGM();
     
+    // 计算游戏时长
+    const gameTime = Date.now() - gameStartTime;
+    const timeStr = formatTime(gameTime);
+    
+    // 检查是否打破最高分记录
+    const isNewRecord = score > highScore;
+    if (isNewRecord) {
+        highScore = score;
+        localStorage.setItem('neonDefenseHighScore', highScore);
+        highscoreValEl.innerText = highScore;
+    }
+    
+    // 更新游戏结束界面统计
+    finalScoreEl.textContent = score;
+    finalKillsEl.textContent = enemiesKilled;
+    finalTimeEl.textContent = timeStr;
+    
+    if (isNewRecord) {
+        newRecordEl.style.display = 'block';
+    } else {
+        newRecordEl.style.display = 'none';
+    }
+    
     ctx.fillStyle = 'rgba(255, 0, 85, 0.2)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
@@ -210,5 +233,5 @@ function gameOver() {
         if (wasDemoMode) {
             startBtn.innerText = "Initialize System";
         }
-    }, 2000);
+    }, 3000);
 }
