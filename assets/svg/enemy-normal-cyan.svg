@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <g filter="url(#glow)">
+    <!-- 外环装甲 - 青色 -->
+    <circle cx="75" cy="75" r="45" 
+            fill="none" 
+            stroke="#66ffcc" 
+            stroke-width="3"
+            opacity="0.8"/>
+    
+    <!-- 六边形主体 - 青色 -->
+    <path d="M 75 35 L 110 55 L 110 95 L 75 115 L 40 95 L 40 55 Z" 
+          fill="#33cc99" 
+          stroke="#66ffcc" 
+          stroke-width="2"/>
+    
+    <!-- 中心血量显示区 -->
+    <circle cx="75" cy="75" r="18" 
+            fill="#003326" 
+            stroke="#66ffcc" 
+            stroke-width="1.5"/>
+    
+    <!-- 中心传感器 -->
+    <circle cx="75" cy="75" r="8" 
+            fill="#99ffee" 
+            opacity="0.9"/>
+    
+    <!-- 装饰线条 -->
+    <line x1="75" y1="35" x2="75" y2="57" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
+    <line x1="110" y1="55" x2="93" y2="65" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
+    <line x1="110" y1="95" x2="93" y2="85" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
+    <line x1="75" y1="115" x2="75" y2="93" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
+    <line x1="40" y1="95" x2="57" y2="85" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
+    <line x1="40" y1="55" x2="57" y2="65" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
+    
+    <!-- 角点装饰 -->
+    <circle cx="75" cy="35" r="2.5" fill="#bbffee"/>
+    <circle cx="110" cy="55" r="2.5" fill="#bbffee"/>
+    <circle cx="110" cy="95" r="2.5" fill="#bbffee"/>
+    <circle cx="75" cy="115" r="2.5" fill="#bbffee"/>
+    <circle cx="40" cy="95" r="2.5" fill="#bbffee"/>
+    <circle cx="40" cy="55" r="2.5" fill="#bbffee"/>
+  </g>
+</svg>

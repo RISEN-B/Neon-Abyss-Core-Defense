@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 发光滤镜 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <g filter="url(#glow)">
+    <!-- 外环装甲圈 -->
+    <circle cx="75" cy="75" r="42" 
+            fill="none" 
+            stroke="#ff8800" 
+            stroke-width="2"
+            opacity="0.6"/>
+    
+    <!-- 第一个炮塔 - 顶部 -->
+    <g transform="translate(75, 75) rotate(-90)">
+      <!-- 炮塔基座 -->
+      <path d="M -12 -8 L 12 -8 L 8 15 L -8 15 Z" 
+            fill="#cc6600" 
+            stroke="#ff8800" 
+            stroke-width="1.5"/>
+      <!-- 炮管 -->
+      <rect x="-4" y="-25" width="8" height="20" 
+            fill="#ffaa00" 
+            stroke="#ff8800" 
+            stroke-width="1"/>
+      <!-- 炮口 -->
+      <circle cx="0" cy="-27" r="4" 
+              fill="#ffcc00" 
+              stroke="#ffaa00" 
+              stroke-width="1"/>
+    </g>
+    
+    <!-- 第二个炮塔 - 右下 -->
+    <g transform="translate(75, 75) rotate(30)">
+      <!-- 炮塔基座 -->
+      <path d="M -12 -8 L 12 -8 L 8 15 L -8 15 Z" 
+            fill="#cc6600" 
+            stroke="#ff8800" 
+            stroke-width="1.5"/>
+      <!-- 炮管 -->
+      <rect x="-4" y="-25" width="8" height="20" 
+            fill="#ffaa00" 
+            stroke="#ff8800" 
+            stroke-width="1"/>
+      <!-- 炮口 -->
+      <circle cx="0" cy="-27" r="4" 
+              fill="#ffcc00" 
+              stroke="#ffaa00" 
+              stroke-width="1"/>
+    </g>
+    
+    <!-- 第三个炮塔 - 左下 -->
+    <g transform="translate(75, 75) rotate(150)">
+      <!-- 炮塔基座 -->
+      <path d="M -12 -8 L 12 -8 L 8 15 L -8 15 Z" 
+            fill="#cc6600" 
+            stroke="#ff8800" 
+            stroke-width="1.5"/>
+      <!-- 炮管 -->
+      <rect x="-4" y="-25" width="8" height="20" 
+            fill="#ffaa00" 
+            stroke="#ff8800" 
+            stroke-width="1"/>
+      <!-- 炮口 -->
+      <circle cx="0" cy="-27" r="4" 
+              fill="#ffcc00" 
+              stroke="#ffaa00" 
+              stroke-width="1"/>
+    </g>
+    
+    <!-- 中心连接环 -->
+    <circle cx="75" cy="75" r="20" 
+            fill="#cc6600" 
+            stroke="#ff8800" 
+            stroke-width="2"/>
+    
+    <!-- 中心血量显示区 - 深色圆形背景 -->
+    <circle cx="75" cy="75" r="15" 
+            fill="#331100" 
+            stroke="#ff8800" 
+            stroke-width="1.5"/>
+    
+    <!-- 中心能量核心 -->
+    <circle cx="75" cy="75" r="8" 
+            fill="#ffbb33" 
+            opacity="0.9"/>
+    
+    <!-- 内部装饰线条 - 三角形连接 -->
+    <line x1="75" y1="55" x2="75" y2="60" 
+          stroke="#ff8800" 
+          stroke-width="1" 
+          opacity="0.5"/>
+    <line x1="92" y1="85" x2="88" y2="82" 
+          stroke="#ff8800" 
+          stroke-width="1" 
+          opacity="0.5"/>
+    <line x1="58" y1="85" x2="62" y2="82" 
+          stroke="#ff8800" 
+          stroke-width="1" 
+          opacity="0.5"/>
+    
+    <!-- 炮塔之间的连接臂 -->
+    <path d="M 75 48 L 92 78 L 58 78 Z" 
+          fill="none" 
+          stroke="#ff8800" 
+          stroke-width="1" 
+          opacity="0.3"/>
+    
+    <!-- 外圈装饰点 -->
+    <circle cx="75" cy="33" r="2.5" fill="#ffcc44"/>
+    <circle cx="110" cy="93" r="2.5" fill="#ffcc44"/>
+    <circle cx="40" cy="93" r="2.5" fill="#ffcc44"/>
+  </g>
+</svg>

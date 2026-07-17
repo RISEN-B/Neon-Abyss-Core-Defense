@@ -1,0 +1,50 @@
+/**
+ * Neon Abyss: Core Defense
+ * GitHub: https://github.com/RISEN-B/Neon-Abyss-Core-Defense
+ *
+ * Copyright (C) 2026  RISEN-B
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* 基础样式 - 包含全局重置和body样式 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background-color: #020205;
+    font-family: 'Orbitron', sans-serif;
+    cursor: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+canvas { 
+    display: block; 
+    image-rendering: pixelated; 
+}
+
+.hidden { 
+    display: none !important; 
+}

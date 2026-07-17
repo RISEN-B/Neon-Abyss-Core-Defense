@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 发光滤镜 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- 金属渐变 - 使用更多断点实现平滑过渡 -->
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#aa2222;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#991a1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#881111;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#770a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#660000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <g filter="url(#glow)">
+    <!-- 最外层八边形框架 -->
+    <path d="M 100 25 L 150 50 L 175 100 L 150 150 L 100 175 L 50 150 L 25 100 L 50 50 Z" 
+          fill="none" 
+          stroke="#cc0000" 
+          stroke-width="3"
+          opacity="0.7"/>
+    
+    <!-- 第一层装甲 - 四个角模块（右上） -->
+    <g transform="translate(100, 100) rotate(45)">
+      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
+            fill="url(#metalGrad)" 
+            stroke="#dd3333" 
+            stroke-width="2"/>
+      <!-- 角点强化 -->
+      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
+    </g>
+    
+    <!-- 第一层装甲 - 四个角模块（右下） -->
+    <g transform="translate(100, 100) rotate(135)">
+      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
+            fill="url(#metalGrad)" 
+            stroke="#dd3333" 
+            stroke-width="2"/>
+      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
+    </g>
+    
+    <!-- 第一层装甲 - 四个角模块（左下） -->
+    <g transform="translate(100, 100) rotate(225)">
+      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
+            fill="url(#metalGrad)" 
+            stroke="#dd3333" 
+            stroke-width="2"/>
+      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
+    </g>
+    
+    <!-- 第一层装甲 - 四个角模块（左上） -->
+    <g transform="translate(100, 100) rotate(315)">
+      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
+            fill="url(#metalGrad)" 
+            stroke="#dd3333" 
+            stroke-width="2"/>
+      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
+    </g>
+    
+    <!-- 第二层装甲 - 十字形结构 -->
+    <rect x="92" y="45" width="16" height="110" 
+          fill="#991111" 
+          stroke="#bb2222" 
+          stroke-width="1.5"/>
+    <rect x="45" y="92" width="110" height="16" 
+          fill="#991111" 
+          stroke="#bb2222" 
+          stroke-width="1.5"/>
+    
+    <!-- 第三层 - 内圈装甲环 -->
+    <circle cx="100" cy="100" r="45" 
+            fill="none" 
+            stroke="#cc0000" 
+            stroke-width="2.5"
+            opacity="0.8"/>
+    
+    <!-- 第四层 - 中型装甲块（四个方向） -->
+    <!-- 上 -->
+    <path d="M 85 60 L 115 60 L 110 75 L 90 75 Z" 
+          fill="#aa1111" 
+          stroke="#cc2222" 
+          stroke-width="1.5"/>
+    <!-- 右 -->
+    <path d="M 140 85 L 140 115 L 125 110 L 125 90 Z" 
+          fill="#aa1111" 
+          stroke="#cc2222" 
+          stroke-width="1.5"/>
+    <!-- 下 -->
+    <path d="M 85 140 L 115 140 L 110 125 L 90 125 Z" 
+          fill="#aa1111" 
+          stroke="#cc2222" 
+          stroke-width="1.5"/>
+    <!-- 左 -->
+    <path d="M 60 85 L 60 115 L 75 110 L 75 90 Z" 
+          fill="#aa1111" 
+          stroke="#cc2222" 
+          stroke-width="1.5"/>
+    
+    <!-- 第五层 - 能量环（双层） -->
+    <circle cx="100" cy="100" r="35" 
+            fill="none" 
+            stroke="#ff0000" 
+            stroke-width="2"
+            opacity="0.6"/>
+    <circle cx="100" cy="100" r="30" 
+            fill="none" 
+            stroke="#ff3333" 
+            stroke-width="1.5"
+            opacity="0.5"/>
+    
+    <!-- 中心血量显示区 - 大型深色圆形背景 -->
+    <circle cx="100" cy="100" r="25" 
+            fill="#2a0000" 
+            stroke="#cc0000" 
+            stroke-width="2.5"/>
+    
+    <!-- 核心反应堆 - 三层光环 -->
+    <circle cx="100" cy="100" r="20" 
+            fill="none" 
+            stroke="#ff0000" 
+            stroke-width="1.5"
+            opacity="0.7"/>
+    <circle cx="100" cy="100" r="15" 
+            fill="none" 
+            stroke="#ff4444" 
+            stroke-width="1"
+            opacity="0.6"/>
+    
+    <!-- 反应堆核心 - 明亮红色 -->
+    <circle cx="100" cy="100" r="10" 
+            fill="#ff5555" 
+            opacity="0.9"/>
+    
+    <!-- 内部装饰 - 放射状线条（八个方向） -->
+    <line x1="100" y1="75" x2="100" y2="85" 
+          stroke="#cc0000" 
+          stroke-width="1.5" 
+          opacity="0.5"/>
+    <line x1="125" y1="100" x2="115" y2="100" 
+          stroke="#cc0000" 
+          stroke-width="1.5" 
+          opacity="0.5"/>
+    <line x1="100" y1="125" x2="100" y2="115" 
+          stroke="#cc0000" 
+          stroke-width="1.5" 
+          opacity="0.5"/>
+    <line x1="75" y1="100" x2="85" y2="100" 
+          stroke="#cc0000" 
+          stroke-width="1.5" 
+          opacity="0.5"/>
+    
+    <!-- 对角线装饰 -->
+    <line x1="118" y1="82" x2="112" y2="88" 
+          stroke="#cc0000" 
+          stroke-width="1" 
+          opacity="0.4"/>
+    <line x1="118" y1="118" x2="112" y2="112" 
+          stroke="#cc0000" 
+          stroke-width="1" 
+          opacity="0.4"/>
+    <line x1="82" y1="118" x2="88" y2="112" 
+          stroke="#cc0000" 
+          stroke-width="1" 
+          opacity="0.4"/>
+    <line x1="82" y1="82" x2="88" y2="88" 
+          stroke="#cc0000" 
+          stroke-width="1" 
+          opacity="0.4"/>
+    
+    <!-- 外圈高亮点（八个方向） -->
+    <circle cx="100" cy="50" r="3" fill="#ff4444"/>
+    <circle cx="150" cy="100" r="3" fill="#ff4444"/>
+    <circle cx="100" cy="150" r="3" fill="#ff4444"/>
+    <circle cx="50" cy="100" r="3" fill="#ff4444"/>
+    <circle cx="135" cy="65" r="2.5" fill="#ff5555"/>
+    <circle cx="135" cy="135" r="2.5" fill="#ff5555"/>
+    <circle cx="65" cy="135" r="2.5" fill="#ff5555"/>
+    <circle cx="65" cy="65" r="2.5" fill="#ff5555"/>
+  </g>
+</svg>

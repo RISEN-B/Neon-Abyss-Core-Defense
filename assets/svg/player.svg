@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 渐变定义 -->
+    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffcc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00a88a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="wingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4aa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ffcc;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="engineGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00ffcc;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00ffcc;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- 发光滤镜 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 主体机身 - 流线型飞船（完美居中，无偏移） -->
+  <g filter="url(#glow)">
+    <!-- 主船体 - 三角形机身 -->
+    <path d="M 100 30 L 115 90 L 100 110 L 85 90 Z" 
+          fill="url(#bodyGradient)" 
+          stroke="#00ffcc" 
+          stroke-width="2"/>
+    
+    <!-- 左翼 -->
+    <path d="M 85 90 L 50 120 L 70 130 L 90 105 Z" 
+          fill="url(#wingGradient)" 
+          stroke="#00ffcc" 
+          stroke-width="1.5"/>
+    
+    <!-- 右翼 -->
+    <path d="M 115 90 L 150 120 L 130 130 L 110 105 Z" 
+          fill="url(#wingGradient)" 
+          stroke="#00ffcc" 
+          stroke-width="1.5"/>
+    
+    <!-- 驾驶舱 - 圆形透明罩 -->
+    <circle cx="100" cy="70" r="12" 
+            fill="#00ffff" 
+            fill-opacity="0.6" 
+            stroke="#00ffcc" 
+            stroke-width="1.5"/>
+    
+    <!-- 驾驶舱高光 -->
+    <ellipse cx="97" cy="67" rx="4" ry="3" 
+             fill="#ffffff" 
+             fill-opacity="0.8"/>
+    
+    <!-- 引擎喷口 - 左侧 -->
+    <rect x="88" y="108" width="8" height="12" 
+          fill="#0088aa" 
+          stroke="#00ffcc" 
+          stroke-width="1"/>
+    
+    <!-- 引擎喷口 - 右侧 -->
+    <rect x="104" y="108" width="8" height="12" 
+          fill="#0088aa" 
+          stroke="#00ffcc" 
+          stroke-width="1"/>
+    
+    <!-- 引擎火焰效果 - 改为柔和的泪滴形状 -->
+    <path d="M 92 120 Q 92 135 92 140 Q 89 135 92 120 Z" 
+          fill="url(#engineGlow)" 
+          opacity="0.8"/>
+    <path d="M 108 120 Q 108 135 108 140 Q 111 135 108 120 Z" 
+          fill="url(#engineGlow)" 
+          opacity="0.8"/>
+    
+    <!-- 装饰线条 - 机身细节 -->
+    <line x1="100" y1="40" x2="100" y2="95" 
+          stroke="#00ffcc" 
+          stroke-width="1" 
+          opacity="0.5"/>
+    
+    <!-- 侧边装饰线 -->
+    <path d="M 92 75 L 85 90" 
+          stroke="#00ffcc" 
+          stroke-width="1" 
+          opacity="0.4"/>
+    <path d="M 108 75 L 115 90" 
+          stroke="#00ffcc" 
+          stroke-width="1" 
+          opacity="0.4"/>
+    
+    <!-- 翼尖装饰 -->
+    <circle cx="50" cy="120" r="2" fill="#00ffcc"/>
+    <circle cx="150" cy="120" r="2" fill="#00ffcc"/>
+  </g>
+</svg>

@@ -1,0 +1,124 @@
+/**
+ * Neon Abyss: Core Defense
+ * GitHub: https://github.com/RISEN-B/Neon-Abyss-Core-Defense
+ *
+ * Copyright (C) 2026  RISEN-B
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* HUD界面样式 - 包含游戏进行中的UI元素 */
+
+#uiLayer {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.hud-top {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    text-shadow: 0 0 10px #00d2ff;
+}
+
+.score-box {
+    font-size: 32px; 
+    font-weight: 900;
+    color: #00d2ff; 
+    letter-spacing: 2px;
+}
+
+.stats-box {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.stat-label {
+    font-size: 10px; 
+    color: #888;
+}
+
+.stat-value {
+    font-size: 20px; 
+    font-weight: bold;
+    color: #fff;
+}
+
+.health-container {
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    overflow: visible;
+}
+
+.health-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0055, #ff5500);
+    width: 100%;
+    box-shadow: 0 0 15px #ff0055;
+    transition: width 0.05s linear; 
+}
+
+.weapon-info {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) skewX(-20deg);
+    color: #00ffcc;
+    font-size: 14px;
+    text-shadow: 
+        -1px -1px 1px rgba(0, 0, 0, 0.4),
+        1px -1px 1px rgba(0, 0, 0, 0.4),
+        -1px 1px 1px rgba(0, 0, 0, 0.4),
+        1px 1px 1px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.health-text {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 
+        -1px -1px 2px rgba(0, 0, 0, 0.8),
+        1px -1px 2px rgba(0, 0, 0, 0.8),
+        -1px 1px 2px rgba(0, 0, 0, 0.8),
+        1px 1px 2px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    z-index: 10;
+    letter-spacing: 1px;
+}

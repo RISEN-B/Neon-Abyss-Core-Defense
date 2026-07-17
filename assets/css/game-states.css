@@ -1,0 +1,91 @@
+/**
+ * Neon Abyss: Core Defense
+ * GitHub: https://github.com/RISEN-B/Neon-Abyss-Core-Defense
+ *
+ * Copyright (C) 2026  RISEN-B
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* 游戏状态界面样式 - 包含暂停、Game Over等覆盖层 */
+
+#gameOverMsg {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ff0055;
+    font-size: 80px; 
+    font-weight: 900;
+    text-shadow: 0 0 30px #ff0055;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 50;
+}
+
+#pauseOverlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    pointer-events: none;
+}
+
+#pauseOverlay.active {
+    display: flex;
+}
+
+.pause-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.pause-title {
+    font-size: 60px;
+    color: #00ffcc;
+    text-shadow: 0 0 20px #00ffcc;
+    margin-bottom: 40px;
+    letter-spacing: 10px;
+}
+
+.pause-btn {
+    padding: 15px 50px;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 2px solid #fff;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    min-width: 200px;
+}
+
+.pause-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 20px #fff;
+    transform: scale(1.05);
+}

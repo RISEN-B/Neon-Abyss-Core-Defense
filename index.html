@@ -1,0 +1,100 @@
+<!--
+Neon Abyss: Core Defense
+GitHub: https://github.com/RISEN-B/Neon-Abyss-Core-Defense
+
+Copyright (C) 2026  RISEN-B
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霓虹绝境：核心防御</title>
+    
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS样式 -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/cursor.css">
+    <link rel="stylesheet" href="assets/css/hud.css">
+    <link rel="stylesheet" href="assets/css/game-states.css">
+    <link rel="stylesheet" href="assets/css/start-screen.css">
+</head>
+<body>
+
+<div id="cursor">
+    <div class="aim-ring"></div>
+    <div class="crosshair-h"></div>
+    <div class="crosshair-v"></div>
+</div>
+
+<div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+    
+    <div id="uiLayer">
+        <div class="hud-top">
+            <div class="score-box">SCORE: <span id="scoreVal">0</span></div>
+            <div class="stats-box">
+                <div class="stat-item">
+                    <span class="stat-label">WEAPON LVL</span>
+                    <span class="stat-value" id="multVal">LVL 1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">DAMAGE</span>
+                    <span class="stat-value" id="damageVal">10</span>
+                </div>
+            </div>
+            <div class="health-container">
+                <div id="healthBar" class="health-bar"></div>
+                <div class="weapon-info" id="weaponName">PISTOL</div>
+                <div class="health-text" id="healthText">100 / 100</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverMsg">SYSTEM FAILURE</div>
+
+    <div id="pauseOverlay">
+        <div class="pause-menu">
+            <div class="pause-title">PAUSED</div>
+            <button class="pause-btn" id="resumeBtn">RESUME</button>
+            <button class="pause-btn" id="resetBtn">RESTART</button>
+        </div>
+    </div>
+
+    <div id="startScreen">
+        <h1 class="title">NEON DEFENSE</h1>
+        <p class="subtitle">WASD to Move | HOLD Mouse to Shoot | ESC to Pause</p>
+        <button id="startBtn" class="start-btn">Initialize System</button>
+        <button id="demoBtn" class="start-btn" style="margin-top: 15px; font-size: 0.9em;">DEMO MODE</button>
+    </div>
+</div>
+
+<!-- JavaScript模块 -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/audio-manager.js"></script>
+<script src="assets/js/player.js"></script>
+<script src="assets/js/projectile.js"></script>
+<script src="assets/js/enemy.js"></script>
+<script src="assets/js/powerup.js"></script>
+<script src="assets/js/particles.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/game-loop.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
