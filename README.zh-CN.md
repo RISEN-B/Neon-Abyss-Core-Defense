@@ -144,9 +144,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ```
 
-## 作者
+## 贡献者
 
-**RISEN-B** — [GitHub](https://github.com/RISEN-B)
+|  | 贡献者 | 分工 |
+|--|--------|------|
+| <img src="https://github.com/RISEN-B.png" width="48" style="border-radius:50%"> | [**RISEN-B**](https://github.com/RISEN-B) | 游戏架构设计与核心玩法框架 |
+| <img src="https://github.com/aWazINg7.png" width="48" style="border-radius:50%"> | [**aWazINg7**](https://github.com/aWazINg7) | 视觉风格定位与游戏特性设计 |
+| <img src="https://github.com/crazyn2.png" width="48" style="border-radius:50%"> | [**crazyn2**](https://github.com/crazyn2) | 作品宣传与亮点挖掘 |
+| <img src="https://github.com/kute1654.png" width="48" style="border-radius:50%"> | [**kute1654**](https://github.com/kute1654) | 性能优化与细节打磨 |
 
 ---
 
