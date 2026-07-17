@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <linearGradient id="armor" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#83ffe0"/>
+      <stop offset="0.48" stop-color="#1b987c"/>
+      <stop offset="1" stop-color="#052d31"/>
+    </linearGradient>
+    <radialGradient id="core">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.28" stop-color="#c8fff2"/>
+      <stop offset="1" stop-color="#20e8ba"/>
+    </radialGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="2.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <g id="fin">
+      <path d="M-7 -47 L0 -63 L8 -47 L5 -39 L-4 -39 Z"
+            fill="#073e42" stroke="#70ffdc" stroke-width="1.8"/>
+      <circle cy="-53" r="2" fill="#eafffa"/>
+    </g>
+    <g id="turbine">
+      <path d="M-4 -39 C12 -41 22 -32 24 -18 C13 -24 4 -23 -5 -17 L-13 -25 Z"
+            fill="url(#armor)" stroke="#55e8c4" stroke-width="1.5"/>
+      <path d="M1 -34 C10 -34 15 -30 18 -25" fill="none" stroke="#d0fff4" stroke-width="1.1" opacity="0.68"/>
+    </g>
   </defs>
-  
-  <g filter="url(#glow)">
-    <!-- 外环装甲 - 青色 -->
-    <circle cx="75" cy="75" r="45" 
-            fill="none" 
-            stroke="#66ffcc" 
-            stroke-width="3"
-            opacity="0.8"/>
-    
-    <!-- 六边形主体 - 青色 -->
-    <path d="M 75 35 L 110 55 L 110 95 L 75 115 L 40 95 L 40 55 Z" 
-          fill="#33cc99" 
-          stroke="#66ffcc" 
-          stroke-width="2"/>
-    
-    <!-- 中心血量显示区 -->
-    <circle cx="75" cy="75" r="18" 
-            fill="#003326" 
-            stroke="#66ffcc" 
-            stroke-width="1.5"/>
-    
-    <!-- 中心传感器 -->
-    <circle cx="75" cy="75" r="8" 
-            fill="#99ffee" 
-            opacity="0.9"/>
-    
-    <!-- 装饰线条 -->
-    <line x1="75" y1="35" x2="75" y2="57" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
-    <line x1="110" y1="55" x2="93" y2="65" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
-    <line x1="110" y1="95" x2="93" y2="85" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
-    <line x1="75" y1="115" x2="75" y2="93" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
-    <line x1="40" y1="95" x2="57" y2="85" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
-    <line x1="40" y1="55" x2="57" y2="65" stroke="#66ffcc" stroke-width="1" opacity="0.4"/>
-    
-    <!-- 角点装饰 -->
-    <circle cx="75" cy="35" r="2.5" fill="#bbffee"/>
-    <circle cx="110" cy="55" r="2.5" fill="#bbffee"/>
-    <circle cx="110" cy="95" r="2.5" fill="#bbffee"/>
-    <circle cx="75" cy="115" r="2.5" fill="#bbffee"/>
-    <circle cx="40" cy="95" r="2.5" fill="#bbffee"/>
-    <circle cx="40" cy="55" r="2.5" fill="#bbffee"/>
+
+  <g transform="translate(75 75)" stroke-linejoin="round" stroke-linecap="round">
+    <circle r="53" fill="#020f12" fill-opacity="0.8" stroke="#36dfbd" stroke-width="2.2"
+            stroke-dasharray="11 5" filter="url(#glow)"/>
+    <g filter="url(#glow)">
+      <use href="#fin"/>
+      <use href="#fin" transform="rotate(60)"/>
+      <use href="#fin" transform="rotate(120)"/>
+      <use href="#fin" transform="rotate(180)"/>
+      <use href="#fin" transform="rotate(240)"/>
+      <use href="#fin" transform="rotate(300)"/>
+    </g>
+
+    <circle r="43" fill="#06191c" stroke="#91ffe6" stroke-width="1.6"/>
+    <g>
+      <use href="#turbine"/>
+      <use href="#turbine" transform="rotate(60)"/>
+      <use href="#turbine" transform="rotate(120)"/>
+      <use href="#turbine" transform="rotate(180)"/>
+      <use href="#turbine" transform="rotate(240)"/>
+      <use href="#turbine" transform="rotate(300)"/>
+    </g>
+    <circle r="31" fill="none" stroke="#35c5a8" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+    <circle r="23.5" fill="#020b0d" stroke="#5affe0" stroke-width="2.4" filter="url(#glow)"/>
+    <circle r="17.5" fill="none" stroke="#1c8b77" stroke-width="1.1" stroke-dasharray="6 3"/>
+    <path d="M0 -10 L8 -5 L8 5 L0 10 L-8 5 L-8 -5 Z"
+          fill="#0b3a36" stroke="#a6ffeb" stroke-width="1.2"/>
+    <circle r="6.5" fill="url(#core)" filter="url(#glow)"/>
+    <circle cx="-2" cy="-2" r="1.8" fill="#ffffff"/>
   </g>
 </svg>

@@ -1,188 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- 发光滤镜 -->
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- 金属渐变 - 使用更多断点实现平滑过渡 -->
-    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#aa2222;stop-opacity:1" />
-      <stop offset="25%" style="stop-color:#991a1a;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#881111;stop-opacity:1" />
-      <stop offset="75%" style="stop-color:#770a0a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#660000;stop-opacity:1" />
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9c1e2c"/>
+      <stop offset="0.45" stop-color="#4b0914"/>
+      <stop offset="1" stop-color="#160208"/>
     </linearGradient>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff515c"/>
+      <stop offset="0.35" stop-color="#8c1724"/>
+      <stop offset="1" stop-color="#29040b"/>
+    </linearGradient>
+    <radialGradient id="reactor">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.2" stop-color="#ffc2a8"/>
+      <stop offset="0.55" stop-color="#ff463d"/>
+      <stop offset="1" stop-color="#8b0010"/>
+    </radialGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="bastion" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M-23 -51 L-18 -78 L-10 -86 L10 -86 L18 -78 L23 -51 L14 -40 L-14 -40 Z"
+            fill="url(#plate)" stroke="#ff5159" stroke-width="2.4"/>
+      <path d="M-12 -69 L-7 -77 L7 -77 L12 -69 L8 -58 L-8 -58 Z"
+            fill="#230209" stroke="#ff7d76" stroke-width="1.5"/>
+      <rect x="-4" y="-75" width="8" height="12" rx="2" fill="#ffcbc0" stroke="#ff3838" stroke-width="1.2" filter="url(#glow)"/>
+      <path d="M-14 -48 L14 -48" stroke="#ff9a90" stroke-width="1.2" opacity="0.7"/>
+    </g>
+    <g id="clamp" stroke-linejoin="round">
+      <path d="M20 -56 L41 -61 L57 -48 L61 -29 L50 -19 L36 -27 L31 -42 Z"
+            fill="url(#plate)" stroke="#e73343" stroke-width="2"/>
+      <path d="M42 -51 L52 -43 L53 -34 L48 -29 L41 -34 L37 -45 Z"
+            fill="#2c050b" stroke="#ff6b6b" stroke-width="1.3"/>
+      <circle cx="47" cy="-40" r="3" fill="#ffb0a3"/>
+    </g>
   </defs>
-  
-  <g filter="url(#glow)">
-    <!-- 最外层八边形框架 -->
-    <path d="M 100 25 L 150 50 L 175 100 L 150 150 L 100 175 L 50 150 L 25 100 L 50 50 Z" 
-          fill="none" 
-          stroke="#cc0000" 
-          stroke-width="3"
-          opacity="0.7"/>
-    
-    <!-- 第一层装甲 - 四个角模块（右上） -->
-    <g transform="translate(100, 100) rotate(45)">
-      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
-            fill="url(#metalGrad)" 
-            stroke="#dd3333" 
-            stroke-width="2"/>
-      <!-- 角点强化 -->
-      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
+
+  <g transform="translate(100 100)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Heavy fortress silhouette -->
+    <path d="M0 -90 L60 -72 L88 -28 L88 28 L60 72 L0 90 L-60 72 L-88 28 L-88 -28 L-60 -72 Z"
+          fill="#090106" stroke="#c80e25" stroke-width="4" filter="url(#glow)"/>
+    <path d="M0 -80 L53 -64 L78 -24 L78 24 L53 64 L0 80 L-53 64 L-78 24 L-78 -24 L-53 -64 Z"
+          fill="url(#shell)" stroke="#ff3444" stroke-width="2.2"/>
+    <path d="M0 -69 L45 -55 L67 -20 L67 20 L45 55 L0 69 L-45 55 L-67 20 L-67 -20 L-45 -55 Z"
+          fill="#150208" stroke="#7c0e1c" stroke-width="1.6"/>
+
+    <!-- Cardinal shield towers -->
+    <g filter="url(#glow)">
+      <use href="#bastion"/>
+      <use href="#bastion" transform="rotate(90)"/>
+      <use href="#bastion" transform="rotate(180)"/>
+      <use href="#bastion" transform="rotate(270)"/>
     </g>
-    
-    <!-- 第一层装甲 - 四个角模块（右下） -->
-    <g transform="translate(100, 100) rotate(135)">
-      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
-            fill="url(#metalGrad)" 
-            stroke="#dd3333" 
-            stroke-width="2"/>
-      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
+
+    <!-- Diagonal armor clamps -->
+    <g>
+      <use href="#clamp"/>
+      <use href="#clamp" transform="rotate(90)"/>
+      <use href="#clamp" transform="rotate(180)"/>
+      <use href="#clamp" transform="rotate(270)"/>
     </g>
-    
-    <!-- 第一层装甲 - 四个角模块（左下） -->
-    <g transform="translate(100, 100) rotate(225)">
-      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
-            fill="url(#metalGrad)" 
-            stroke="#dd3333" 
-            stroke-width="2"/>
-      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
-    </g>
-    
-    <!-- 第一层装甲 - 四个角模块（左上） -->
-    <g transform="translate(100, 100) rotate(315)">
-      <path d="M 30 -30 L 55 -15 L 55 15 L 30 30 L 15 15 L 15 -15 Z" 
-            fill="url(#metalGrad)" 
-            stroke="#dd3333" 
-            stroke-width="2"/>
-      <circle cx="55" cy="0" r="4" fill="#ff4444"/>
-    </g>
-    
-    <!-- 第二层装甲 - 十字形结构 -->
-    <rect x="92" y="45" width="16" height="110" 
-          fill="#991111" 
-          stroke="#bb2222" 
-          stroke-width="1.5"/>
-    <rect x="45" y="92" width="110" height="16" 
-          fill="#991111" 
-          stroke="#bb2222" 
-          stroke-width="1.5"/>
-    
-    <!-- 第三层 - 内圈装甲环 -->
-    <circle cx="100" cy="100" r="45" 
-            fill="none" 
-            stroke="#cc0000" 
-            stroke-width="2.5"
-            opacity="0.8"/>
-    
-    <!-- 第四层 - 中型装甲块（四个方向） -->
-    <!-- 上 -->
-    <path d="M 85 60 L 115 60 L 110 75 L 90 75 Z" 
-          fill="#aa1111" 
-          stroke="#cc2222" 
-          stroke-width="1.5"/>
-    <!-- 右 -->
-    <path d="M 140 85 L 140 115 L 125 110 L 125 90 Z" 
-          fill="#aa1111" 
-          stroke="#cc2222" 
-          stroke-width="1.5"/>
-    <!-- 下 -->
-    <path d="M 85 140 L 115 140 L 110 125 L 90 125 Z" 
-          fill="#aa1111" 
-          stroke="#cc2222" 
-          stroke-width="1.5"/>
-    <!-- 左 -->
-    <path d="M 60 85 L 60 115 L 75 110 L 75 90 Z" 
-          fill="#aa1111" 
-          stroke="#cc2222" 
-          stroke-width="1.5"/>
-    
-    <!-- 第五层 - 能量环（双层） -->
-    <circle cx="100" cy="100" r="35" 
-            fill="none" 
-            stroke="#ff0000" 
-            stroke-width="2"
-            opacity="0.6"/>
-    <circle cx="100" cy="100" r="30" 
-            fill="none" 
-            stroke="#ff3333" 
-            stroke-width="1.5"
-            opacity="0.5"/>
-    
-    <!-- 中心血量显示区 - 大型深色圆形背景 -->
-    <circle cx="100" cy="100" r="25" 
-            fill="#2a0000" 
-            stroke="#cc0000" 
-            stroke-width="2.5"/>
-    
-    <!-- 核心反应堆 - 三层光环 -->
-    <circle cx="100" cy="100" r="20" 
-            fill="none" 
-            stroke="#ff0000" 
-            stroke-width="1.5"
-            opacity="0.7"/>
-    <circle cx="100" cy="100" r="15" 
-            fill="none" 
-            stroke="#ff4444" 
-            stroke-width="1"
-            opacity="0.6"/>
-    
-    <!-- 反应堆核心 - 明亮红色 -->
-    <circle cx="100" cy="100" r="10" 
-            fill="#ff5555" 
-            opacity="0.9"/>
-    
-    <!-- 内部装饰 - 放射状线条（八个方向） -->
-    <line x1="100" y1="75" x2="100" y2="85" 
-          stroke="#cc0000" 
-          stroke-width="1.5" 
-          opacity="0.5"/>
-    <line x1="125" y1="100" x2="115" y2="100" 
-          stroke="#cc0000" 
-          stroke-width="1.5" 
-          opacity="0.5"/>
-    <line x1="100" y1="125" x2="100" y2="115" 
-          stroke="#cc0000" 
-          stroke-width="1.5" 
-          opacity="0.5"/>
-    <line x1="75" y1="100" x2="85" y2="100" 
-          stroke="#cc0000" 
-          stroke-width="1.5" 
-          opacity="0.5"/>
-    
-    <!-- 对角线装饰 -->
-    <line x1="118" y1="82" x2="112" y2="88" 
-          stroke="#cc0000" 
-          stroke-width="1" 
-          opacity="0.4"/>
-    <line x1="118" y1="118" x2="112" y2="112" 
-          stroke="#cc0000" 
-          stroke-width="1" 
-          opacity="0.4"/>
-    <line x1="82" y1="118" x2="88" y2="112" 
-          stroke="#cc0000" 
-          stroke-width="1" 
-          opacity="0.4"/>
-    <line x1="82" y1="82" x2="88" y2="88" 
-          stroke="#cc0000" 
-          stroke-width="1" 
-          opacity="0.4"/>
-    
-    <!-- 外圈高亮点（八个方向） -->
-    <circle cx="100" cy="50" r="3" fill="#ff4444"/>
-    <circle cx="150" cy="100" r="3" fill="#ff4444"/>
-    <circle cx="100" cy="150" r="3" fill="#ff4444"/>
-    <circle cx="50" cy="100" r="3" fill="#ff4444"/>
-    <circle cx="135" cy="65" r="2.5" fill="#ff5555"/>
-    <circle cx="135" cy="135" r="2.5" fill="#ff5555"/>
-    <circle cx="65" cy="135" r="2.5" fill="#ff5555"/>
-    <circle cx="65" cy="65" r="2.5" fill="#ff5555"/>
+
+    <!-- Structural rails -->
+    <path d="M0 -58 L0 -40 M58 0 L40 0 M0 58 L0 40 M-58 0 L-40 0"
+          stroke="#ff786e" stroke-width="2.2" opacity="0.75"/>
+    <path d="M-39 -39 L-28 -28 M39 -39 L28 -28 M39 39 L28 28 M-39 39 L-28 28"
+          stroke="#9f1322" stroke-width="2" opacity="0.8"/>
+
+    <!-- Layered reactor housing -->
+    <circle r="55" fill="none" stroke="#df1129" stroke-width="2.8"
+            stroke-dasharray="18 6" filter="url(#glow)"/>
+    <circle r="45" fill="#120106" stroke="#ff3c43" stroke-width="2.3"/>
+    <circle r="38" fill="none" stroke="#77101d" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <circle r="31" fill="#060104" stroke="#e92535" stroke-width="2.5" filter="url(#glow)"/>
+    <circle r="23" fill="none" stroke="#991523" stroke-width="1.4" stroke-dasharray="9 3"/>
+
+    <!-- Reactor iris; center remains dark enough for HP text. -->
+    <path d="M0 -17 L12 -12 L17 0 L12 12 L0 17 L-12 12 L-17 0 L-12 -12 Z"
+          fill="#2d050b" stroke="#ff625b" stroke-width="1.8"/>
+    <circle r="9" fill="url(#reactor)" filter="url(#glow)"/>
+    <circle cx="-3" cy="-3" r="2.2" fill="#ffffff"/>
+
+    <!-- Armor status lights -->
+    <circle cx="0" cy="-57" r="3" fill="#ffd0c1"/>
+    <circle cx="57" cy="0" r="3" fill="#ffd0c1"/>
+    <circle cx="0" cy="57" r="3" fill="#ffd0c1"/>
+    <circle cx="-57" cy="0" r="3" fill="#ffd0c1"/>
   </g>
 </svg>
