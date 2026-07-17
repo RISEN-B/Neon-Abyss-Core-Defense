@@ -166,10 +166,14 @@ const audioManager = new AudioManager();
 // --- 事件监听器 ---
 
 window.addEventListener('keydown', (e) => {
-    // 演示模式下只允许ESC键退出
+    // 演示模式下只允许ESC键
     if (isDemoMode) {
         if (e.key === 'Escape') {
-            exitDemoMode();
+            if (isPaused) {
+                togglePause();
+            } else {
+                exitDemoMode();
+            }
         }
         return; // 演示模式下忽略其他按键
     }
@@ -192,12 +196,12 @@ window.addEventListener('keyup', (e) => {
 });
 
 window.addEventListener('mousemove', (e) => {
-    // 演示模式下禁用鼠标移动控制
-    if (isDemoMode) return;
-    
+    // 演示模式下不更新游戏鼠标坐标（防止玩家跟随鼠标），但光标视觉仍跟随
+    if (!isDemoMode) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    }
     cursor.classList.add('visible');
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
 });
