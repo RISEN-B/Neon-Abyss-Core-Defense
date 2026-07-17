@@ -404,6 +404,11 @@ class Player {
         
         // 每吃一个道具（包括血包），攻击力+1
         this.powerupCount += 1;
+        totalPowerupsCollected++;
+        powerupsValEl.innerText = totalPowerupsCollected;
+        
+        // 检查成就
+        checkAchievements();
         
         if (p.type === 'HEALTH') {
             this.maxHp += 1;
@@ -460,6 +465,35 @@ class Player {
     }
 
     draw() {
+        // 绘制护盾效果（无敌时）
+        if (this.invulnerable > 0) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            
+            // 护盾光环
+            const shieldAlpha = 0.3 + Math.sin(Date.now() * 0.01) * 0.2;
+            const gradient = ctx.createRadialGradient(0, 0, this.radius, 0, 0, this.radius * 2.5);
+            gradient.addColorStop(0, `rgba(0, 255, 204, ${shieldAlpha})`);
+            gradient.addColorStop(0.5, `rgba(0, 255, 204, ${shieldAlpha * 0.5})`);
+            gradient.addColorStop(1, 'rgba(0, 255, 204, 0)');
+            
+            ctx.beginPath();
+            ctx.arc(0, 0, this.radius * 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // 护盾边缘
+            ctx.beginPath();
+            ctx.arc(0, 0, this.radius * 2, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(0, 255, 204, ${shieldAlpha})`;
+            ctx.lineWidth = 2;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#00ffcc';
+            ctx.stroke();
+            
+            ctx.restore();
+        }
+        
         // 绘制玩家本体（受无敌状态影响）
         if (!(this.invulnerable > 0 && Math.floor(Date.now() / 50) % 2 === 0)) {
             ctx.save();

@@ -25,6 +25,14 @@
 function animate() {
     if (!gameRunning || isPaused) return;
     
+    // 更新FPS
+    updateFPS();
+    
+    // 更新游戏时间
+    if (frameCount % 60 === 0) {
+        updateGameTime();
+    }
+    
     ctx.fillStyle = 'rgba(2, 2, 5, 0.4)'; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -124,6 +132,13 @@ function animate() {
                     score += 10;
                     enemiesKilled++;
                     scoreValEl.innerText = score;
+                    killsValEl.innerText = enemiesKilled;
+                    
+                    // 检查波次进度
+                    checkWaveProgress();
+                    
+                    // 检查成就
+                    checkAchievements();
                     
                     // 特殊敌人生成标记（仅用于单次触发）
                     if (enemiesKilled % 100 === 0) {
@@ -189,6 +204,13 @@ function animate() {
                     score += 10;
                     enemiesKilled++;
                     scoreValEl.innerText = score;
+                    killsValEl.innerText = enemiesKilled;
+                    
+                    // 检查波次进度
+                    checkWaveProgress();
+                    
+                    // 检查成就
+                    checkAchievements();
                     
                     if (enemiesKilled % 100 === 0) {
                         nextEnemyIsSpecial = 'giant';

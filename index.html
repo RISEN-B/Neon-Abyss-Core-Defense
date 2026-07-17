@@ -47,7 +47,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     
     <div id="uiLayer">
         <div class="hud-top">
-            <div class="score-box">SCORE: <span id="scoreVal">0</span></div>
+            <div class="score-container">
+                <div class="score-box">SCORE: <span id="scoreVal">0</span></div>
+                <div class="highscore-box">BEST: <span id="highscoreVal">0</span></div>
+            </div>
             <div class="stats-box">
                 <div class="stat-item">
                     <span class="stat-label">WEAPON LVL</span>
@@ -64,15 +67,79 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
                 <div class="health-text" id="healthText">100 / 100</div>
             </div>
         </div>
+        <div class="hud-bottom">
+            <div class="stats-panel">
+                <div class="stats-row">
+                    <span class="stats-label">KILLS</span>
+                    <span class="stats-value" id="killsVal">0</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label">TIME</span>
+                    <span class="stats-value" id="timeVal">00:00</span>
+                </div>
+                <div class="stats-row">
+                    <span class="stats-label">POWERUPS</span>
+                    <span class="stats-value" id="powerupsVal">0</span>
+                </div>
+            </div>
+            <div class="fps-display">FPS: <span id="fpsVal">60</span></div>
+        </div>
     </div>
 
-    <div id="gameOverMsg">SYSTEM FAILURE</div>
+    <div id="gameOverMsg">
+        <div class="gameover-title">SYSTEM FAILURE</div>
+        <div class="gameover-stats">
+            <div class="gameover-stat">FINAL SCORE: <span id="finalScore">0</span></div>
+            <div class="gameover-stat">KILLS: <span id="finalKills">0</span></div>
+            <div class="gameover-stat">TIME: <span id="finalTime">00:00</span></div>
+            <div class="gameover-stat new-record" id="newRecord" style="display: none;">★ NEW RECORD ★</div>
+        </div>
+    </div>
+
+    <div id="achievementPopup" class="achievement-popup">
+        <div class="achievement-icon">★</div>
+        <div class="achievement-text">
+            <div class="achievement-title" id="achievementTitle">Achievement Unlocked</div>
+            <div class="achievement-desc" id="achievementDesc">Description</div>
+        </div>
+    </div>
+
+    <div id="waveAnnouncement" class="wave-announcement">
+        <div class="wave-text" id="waveText">WAVE 1</div>
+    </div>
 
     <div id="pauseOverlay">
         <div class="pause-menu">
             <div class="pause-title">PAUSED</div>
             <button class="pause-btn" id="resumeBtn">RESUME</button>
+            <button class="pause-btn" id="settingsBtn">SETTINGS</button>
             <button class="pause-btn" id="resetBtn">RESTART</button>
+        </div>
+    </div>
+
+    <div id="settingsOverlay" class="settings-overlay">
+        <div class="settings-menu">
+            <div class="settings-title">SETTINGS</div>
+            <div class="settings-group">
+                <label class="settings-label">MASTER VOLUME</label>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+                <span class="volume-value" id="volumeValue">70%</span>
+            </div>
+            <div class="settings-group">
+                <label class="settings-label">BGM VOLUME</label>
+                <input type="range" id="bgmSlider" class="volume-slider" min="0" max="100" value="50">
+                <span class="volume-value" id="bgmValue">50%</span>
+            </div>
+            <div class="settings-group">
+                <label class="settings-label">SFX VOLUME</label>
+                <input type="range" id="sfxSlider" class="volume-slider" min="0" max="100" value="80">
+                <span class="volume-value" id="sfxValue">80%</span>
+            </div>
+            <div class="settings-group">
+                <label class="settings-label">SHOW FPS</label>
+                <input type="checkbox" id="showFpsCheck" class="settings-checkbox" checked>
+            </div>
+            <button class="pause-btn" id="closeSettingsBtn">BACK</button>
         </div>
     </div>
 

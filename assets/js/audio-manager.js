@@ -27,9 +27,14 @@ class AudioManager {
     constructor() {
         this.audioCtx = null;
         this.masterGain = null;
+        this.bgmGain = null;
+        this.sfxGain = null;
         this.isMuted = false;
         this.bgmOscillators = [];
         this.initialized = false;
+        this.masterVolume = 0.7;
+        this.bgmVolume = 0.5;
+        this.sfxVolume = 0.8;
     }
 
     // 初始化音频上下文(需要用户交互后调用)
@@ -38,9 +43,22 @@ class AudioManager {
         
         try {
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // 创建主音量节点
             this.masterGain = this.audioCtx.createGain();
-            this.masterGain.gain.value = 0.3; // 主音量30%
+            this.masterGain.gain.value = this.masterVolume * 0.3;
             this.masterGain.connect(this.audioCtx.destination);
+            
+            // 创建BGM音量节点
+            this.bgmGain = this.audioCtx.createGain();
+            this.bgmGain.gain.value = this.bgmVolume * 0.1;
+            this.bgmGain.connect(this.masterGain);
+            
+            // 创建SFX音量节点
+            this.sfxGain = this.audioCtx.createGain();
+            this.sfxGain.gain.value = this.sfxVolume * 0.4;
+            this.sfxGain.connect(this.masterGain);
+            
             this.initialized = true;
             
             // 预创建射击音效缓冲区,减少延迟
@@ -62,24 +80,46 @@ class AudioManager {
         const osc = this.audioCtx.createOscillator();
         const gain = this.audioCtx.createGain();
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         gain.gain.value = 0; // 静音预热
         osc.start();
         osc.stop(this.audioCtx.currentTime + 0.01);
     }
 
-    // 设置主音量
-    setVolume(volume) {
+    // 设置主音量 (0-1)
+    setMasterVolume(volume) {
+        this.masterVolume = Math.max(0, Math.min(1, volume));
         if (this.masterGain) {
-            this.masterGain.gain.value = Math.max(0, Math.min(1, volume));
+            this.masterGain.gain.value = this.masterVolume * 0.3;
         }
+    }
+
+    // 设置BGM音量 (0-1)
+    setBGMVolume(volume) {
+        this.bgmVolume = Math.max(0, Math.min(1, volume));
+        if (this.bgmGain) {
+            this.bgmGain.gain.value = this.bgmVolume * 0.1;
+        }
+    }
+
+    // 设置SFX音量 (0-1)
+    setSFXVolume(volume) {
+        this.sfxVolume = Math.max(0, Math.min(1, volume));
+        if (this.sfxGain) {
+            this.sfxGain.gain.value = this.sfxVolume * 0.4;
+        }
+    }
+
+    // 设置主音量（旧方法，保持兼容）
+    setVolume(volume) {
+        this.setMasterVolume(volume);
     }
 
     // 静音切换
     toggleMute() {
         this.isMuted = !this.isMuted;
         if (this.masterGain) {
-            this.masterGain.gain.value = this.isMuted ? 0 : 0.3;
+            this.masterGain.gain.value = this.isMuted ? 0 : this.masterVolume * 0.3;
         }
         return this.isMuted;
     }
@@ -93,7 +133,7 @@ class AudioManager {
         const gain = this.audioCtx.createGain();
         
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         
         osc.type = 'square';
         const now = this.audioCtx.currentTime;
@@ -134,7 +174,7 @@ class AudioManager {
         
         noise.connect(filter);
         filter.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         noise.start(now);
     }
 
@@ -147,7 +187,7 @@ class AudioManager {
         const gain = this.audioCtx.createGain();
         
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         
         osc.type = 'sine';
         const now = this.audioCtx.currentTime;
@@ -175,7 +215,7 @@ class AudioManager {
             const gain = this.audioCtx.createGain();
             
             osc.connect(gain);
-            gain.connect(this.masterGain);
+            gain.connect(this.sfxGain);
             
             osc.type = 'sine';
             osc.frequency.value = freq;
@@ -198,7 +238,7 @@ class AudioManager {
         const gain = this.audioCtx.createGain();
         
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         
         osc.type = 'sawtooth';
         const now = this.audioCtx.currentTime;
@@ -238,7 +278,7 @@ class AudioManager {
                 const gain = this.audioCtx.createGain();
                 
                 osc.connect(gain);
-                gain.connect(this.masterGain);
+                gain.connect(this.bgmGain);
                 
                 osc.type = 'triangle';
                 osc.frequency.value = note.freq;
@@ -278,7 +318,7 @@ class AudioManager {
         const gain = this.audioCtx.createGain();
         
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         
         osc.type = 'sawtooth';
         const now = this.audioCtx.currentTime;
@@ -301,7 +341,7 @@ class AudioManager {
         const gain = this.audioCtx.createGain();
         
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         
         osc.type = 'sine';
         const now = this.audioCtx.currentTime;
@@ -324,7 +364,7 @@ class AudioManager {
         const gain = this.audioCtx.createGain();
         
         osc.connect(gain);
-        gain.connect(this.masterGain);
+        gain.connect(this.sfxGain);
         
         osc.type = 'sine';
         const now = this.audioCtx.currentTime;
