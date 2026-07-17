@@ -149,6 +149,7 @@ function togglePause() {
     if (isPaused) {
         pauseOverlay.classList.add('active');
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        clearWaveAnnouncement();
         console.log('Game paused, animation cancelled');
     } else {
         pauseOverlay.classList.remove('active');
@@ -178,7 +179,8 @@ function restartGame() {
     gameOverEl.classList.add('hidden');
     pauseOverlay.classList.remove('active');
     isPaused = false;
-    gameRunning = false; 
+    gameRunning = false;
+    clearWaveAnnouncement();
 }
 
 // 游戏结束
@@ -193,13 +195,15 @@ function gameOver() {
     
     shakeIntensity = 0;
     if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    clearWaveAnnouncement();
     
     audioManager.playGameOver();
     audioManager.stopBGM();
     
     // 计算游戏时长
-    const gameTime = Date.now() - gameStartTime;
-    const timeStr = formatTime(gameTime);
+    const minutes = Math.floor(gameSeconds / 60).toString().padStart(2, '0');
+    const seconds = (gameSeconds % 60).toString().padStart(2, '0');
+    const timeStr = `${minutes}:${seconds}`;
     
     // 检查是否打破最高分记录
     const isNewRecord = score > highScore;

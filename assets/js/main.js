@@ -34,11 +34,12 @@ let enemiesKilled = 0;
 let nextEnemyIsSpecial = null;
 
 // 游戏统计
-let gameStartTime = 0;
+let gameSeconds = 0;
 let totalPowerupsCollected = 0;
 let currentWave = 1;
 let waveKills = 0;
 let waveThreshold = 10;
+let waveTimeoutId = null;
 
 // FPS计算
 let lastTime = performance.now();
@@ -174,7 +175,13 @@ window.addEventListener('keydown', (e) => {
     }
     
     if (keys.hasOwnProperty(e.key.toLowerCase())) keys[e.key.toLowerCase()] = true;
-    if (e.key === 'Escape') togglePause();
+    if (e.key === 'Escape') {
+        if (settingsOverlay.classList.contains('active')) {
+            closeSettings();
+        } else {
+            togglePause();
+        }
+    }
 });
 
 window.addEventListener('keyup', (e) => {
@@ -327,7 +334,7 @@ function startGame(demoMode = false) {
     isPaused = false;
     
     // 重置统计
-    gameStartTime = Date.now();
+    gameSeconds = 0;
     totalPowerupsCollected = 0;
     currentWave = 1;
     waveKills = 0;
@@ -397,6 +404,7 @@ function exitDemoMode() {
     // 显示标题页面
     startScreen.classList.remove('hidden');
     cursor.style.display = 'block';
+    clearWaveAnnouncement();
     
     // 清空游戏实体
     enemies = [];
@@ -422,10 +430,20 @@ highscoreValEl.innerText = highScore;
 function showWaveAnnouncement(wave) {
     waveText.textContent = `WAVE ${wave}`;
     waveAnnouncement.classList.add('show');
-    
-    setTimeout(() => {
+
+    if (waveTimeoutId) clearTimeout(waveTimeoutId);
+    waveTimeoutId = setTimeout(() => {
         waveAnnouncement.classList.remove('show');
+        waveTimeoutId = null;
     }, 2000);
+}
+
+function clearWaveAnnouncement() {
+    if (waveTimeoutId) {
+        clearTimeout(waveTimeoutId);
+        waveTimeoutId = null;
+    }
+    waveAnnouncement.classList.remove('show');
 }
 
 /**
@@ -461,11 +479,9 @@ function showAchievement(title, desc) {
  * 更新游戏时间显示
  */
 function updateGameTime() {
-    if (!gameRunning || isPaused) return;
-    
-    const elapsed = Math.floor((Date.now() - gameStartTime) / 1000);
-    const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
-    const seconds = (elapsed % 60).toString().padStart(2, '0');
+    gameSeconds++;
+    const minutes = Math.floor(gameSeconds / 60).toString().padStart(2, '0');
+    const seconds = (gameSeconds % 60).toString().padStart(2, '0');
     timeValEl.textContent = `${minutes}:${seconds}`;
 }
 
