@@ -26,6 +26,14 @@ Neon Abyss: Core Defense is a fast-paced 2D bullet-hell defense game set in a ne
 
 **Zero dependencies. No build tools. No npm install. Just open and play.**
 
+## Preview
+
+<p align="center">
+  <img src="./docs/preview_1.jpg" alt="Gameplay Preview 1" width="48%">
+  &nbsp;
+  <img src="./docs/preview_2.jpg" alt="Gameplay Preview 2" width="48%">
+</p>
+
 ## Gameplay
 
 ### Controls

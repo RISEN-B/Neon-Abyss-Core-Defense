@@ -26,6 +26,14 @@
 
 **零依赖。无需构建工具。无需 npm install。打开即玩。**
 
+## 游戏截图
+
+<p align="center">
+  <img src="./docs/preview_1.jpg" alt="Gameplay Preview 1" width="48%">
+  &nbsp;
+  <img src="./docs/preview_2.jpg" alt="Gameplay Preview 2" width="48%">
+</p>
+
 ## 游戏玩法
 
 ### 操作
