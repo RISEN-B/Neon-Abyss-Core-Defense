@@ -1,7 +1,17 @@
-# 霓虹绝境：核心防御
+<h1 align="center">
+  <img src="./assets/svg/player.svg" alt="霓虹绝境" width="128" />
+  <br>
+  霓虹绝境：核心防御
+  <br>
+</h1>
+
+<h3 align="center">
+一款使用原生 JavaScript 和 HTML5 Canvas 构建的赛博朋克风格俯视角街机射击游戏。
+</h3>
 
 <p align="center">
-  <a href="README.md">English</a> | 中文
+  <a href="README.md">English</a> ·
+  中文
 </p>
 
 <p align="center">
@@ -9,12 +19,6 @@
   <img src="https://img.shields.io/badge/vanilla-js-yellow.svg" alt="Vanilla JavaScript">
   <img src="https://img.shields.io/badge/platform-web-brightgreen.svg" alt="Platform: Web">
 </p>
-
-<p align="center">
-  <b>霓虹绝境：核心防御</b> — 一款使用原生 JavaScript 和 HTML5 Canvas 构建的赛博朋克风格俯视角街机射击游戏。
-</p>
-
----
 
 ## 概览
 

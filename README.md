@@ -1,7 +1,17 @@
-# Neon Abyss: Core Defense
+<h1 align="center">
+  <img src="./assets/svg/player.svg" alt="Neon Abyss" width="128" />
+  <br>
+  Neon Abyss: Core Defense
+  <br>
+</h1>
+
+<h3 align="center">
+A cyberpunk-themed top-down arcade shooter built with vanilla JavaScript and HTML5 Canvas.
+</h3>
 
 <p align="center">
-  English | <a href="README.zh-CN.md">中文</a>
+  <a href="./README.md">English</a> ·
+  <a href="./README.zh-CN.md">中文</a>
 </p>
 
 <p align="center">
@@ -9,12 +19,6 @@
   <img src="https://img.shields.io/badge/vanilla-js-yellow.svg" alt="Vanilla JavaScript">
   <img src="https://img.shields.io/badge/platform-web-brightgreen.svg" alt="Platform: Web">
 </p>
-
-<p align="center">
-  <b>Neon Abyss: Core Defense</b> — A cyberpunk-themed top-down arcade shooter built with vanilla JavaScript and HTML5 Canvas.
-</p>
-
----
 
 ## Overview
 
