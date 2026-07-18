@@ -151,13 +151,17 @@ function togglePause() {
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
         clearWaveAnnouncement();
         // 演示模式暂停时显示鼠标，方便操作暂停菜单
-        if (isDemoMode) cursor.style.display = 'block';
+        if (isDemoMode) {
+            cursor.style.display = 'block';
+        }
         console.log('Game paused, animation cancelled');
     } else {
         pauseOverlay.classList.remove('active');
         animate();
         // 演示模式恢复时重新隐藏鼠标
-        if (isDemoMode) cursor.style.display = 'none';
+        if (isDemoMode) {
+            cursor.style.display = 'none';
+        }
         console.log('Game resumed, animation restarted');
     }
 }
@@ -168,13 +172,15 @@ function resumeGame() {
     isPaused = false;
     pauseOverlay.classList.remove('active');
     animate();
-    if (isDemoMode) cursor.style.display = 'none';
+    if (isDemoMode) {
+        cursor.style.display = 'none';
+    }
 }
 
 // 重新开始游戏
 function restartGame() {
     if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    
+
     // 重置演示模式状态
     isDemoMode = false;
     cursor.style.display = 'block';

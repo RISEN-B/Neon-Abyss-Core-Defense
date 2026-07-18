@@ -72,7 +72,8 @@ let settings = {
     masterVolume: 70,
     bgmVolume: 50,
     sfxVolume: 80,
-    showFps: true
+    showFps: true,
+    pauseOnBlur: true
 };
 
 // SVG资源
@@ -159,6 +160,7 @@ const volumeValue = document.getElementById('volumeValue');
 const bgmValue = document.getElementById('bgmValue');
 const sfxValue = document.getElementById('sfxValue');
 const showFpsCheck = document.getElementById('showFpsCheck');
+const pauseOnBlurCheck = document.getElementById('pauseOnBlurCheck');
 
 // 音频管理器实例
 const audioManager = new AudioManager();
@@ -169,11 +171,7 @@ window.addEventListener('keydown', (e) => {
     // 演示模式下只允许ESC键
     if (isDemoMode) {
         if (e.key === 'Escape') {
-            if (isPaused) {
-                togglePause();
-            } else {
-                exitDemoMode();
-            }
+            togglePause();
         }
         return; // 演示模式下忽略其他按键
     }
@@ -231,7 +229,7 @@ window.addEventListener('resize', resize);
 
 // 窗口焦点监听 - 失焦时自动暂停并重置按键状态
 window.addEventListener('blur', () => {
-    if (gameRunning && !isPaused) {
+    if (gameRunning && !isPaused && settings.pauseOnBlur) {
         // 重置所有按键状态
         Object.keys(keys).forEach(key => keys[key] = false);
         // 自动暂停游戏
@@ -292,6 +290,11 @@ sfxSlider.addEventListener('input', (e) => {
 showFpsCheck.addEventListener('change', (e) => {
     settings.showFps = e.target.checked;
     document.querySelector('.fps-display').style.display = settings.showFps ? 'block' : 'none';
+    saveSettings();
+});
+
+pauseOnBlurCheck.addEventListener('change', (e) => {
+    settings.pauseOnBlur = e.target.checked;
     saveSettings();
 });
 
@@ -385,39 +388,6 @@ function startGame(demoMode = false) {
     audioManager.startBGM();
     
     animate();
-}
-
-/**
- * 退出演示模式
- */
-function exitDemoMode() {
-    console.log('Exiting Demo Mode');
-    
-    // 停止游戏
-    gameRunning = false;
-    isDemoMode = false;
-    
-    // 取消动画帧
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-    }
-    
-    // 停止BGM
-    audioManager.stopBGM();
-    
-    // 显示标题页面
-    startScreen.classList.remove('hidden');
-    cursor.style.display = 'block';
-    clearWaveAnnouncement();
-    
-    // 清空游戏实体
-    enemies = [];
-    projectiles = [];
-    enemyProjectiles = [];
-    particles = [];
-    powerups = [];
-    floatingTexts = [];
 }
 
 // 页面加载时初始化画布尺寸（确保游戏启动前画布尺寸正确）
@@ -527,13 +497,14 @@ function checkWaveProgress() {
  */
 function openSettings() {
     settingsOverlay.classList.add('active');
-    
+
     // 更新滑块位置
     volumeSlider.value = settings.masterVolume;
     bgmSlider.value = settings.bgmVolume;
     sfxSlider.value = settings.sfxVolume;
     showFpsCheck.checked = settings.showFps;
-    
+    pauseOnBlurCheck.checked = settings.pauseOnBlur;
+
     volumeValue.textContent = settings.masterVolume + '%';
     bgmValue.textContent = settings.bgmVolume + '%';
     sfxValue.textContent = settings.sfxVolume + '%';
